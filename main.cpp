@@ -13,7 +13,7 @@ int main()
     vector<int> v {1,3, 2,2, 5,0, 6,1, 11,0, 3,1, 7,1, 12,0,
     4,3, 8,1, 13,0, 9,1, 14,0, 10,0};
 
-    /* Construit la racine qui ne possède pas de père ! */
+    /* Construit la racine qui ne possÃ¨de pas de pÃ¨re ! */
     PNoeud racine = new Noeud(v, pos, 0);
 
     cout << "******** AFFICHAGE DE L'ARBRE ********" << endl;
@@ -40,7 +40,7 @@ int main()
 
     cout << endl << "******** DESTRUCTION DE L'ARBRE ********" << endl;
     delete racine;
-    /* CAPITAL */
+    /* CAPITAL ! */
     racine = 0;
 
     return 0;
