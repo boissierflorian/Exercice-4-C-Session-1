@@ -9,28 +9,27 @@ Noeud::Noeud() {
 }
 
 Noeud::Noeud(vector<int> v, int& pos, Noeud *le_pere) {
-    /* Définit le père peu importe si il est nul */
+    /* DÃ©finit le pÃ¨re peu importe si il est nul */
     pere = le_pere;
 
-    /* Définit la valeur actuelle du noeud */
+    /* DÃ©finit la valeur actuelle du noeud */
     valeur = v[pos];
 
-    /* On récupère le nombre d'enfants */
+    /* On rÃ©cupÃ¨re le nombre d'enfants */
     unsigned nombreEnfants = v[++pos];
 
-    /* Appel récursif du constructeur pour chaque enfants */
+    /* Appel rÃ©cursif du constructeur pour chaque enfants */
     for (unsigned i = 0; i < nombreEnfants; i++) {
-        /* On oublie pas d'incrémenter pos car c'est une référence !! */
+        /* On oublie pas d'incrÃ©menter pos car c'est une rÃ©fÃ©rence !! */
         fils.push_back(new Noeud(v, ++pos, this));
     }
 }
 
 Noeud::~Noeud() {
-
     cout << "Destruction du noeud de valeur: " << valeur << endl;
 
-    /* Il est nécessaire de détruire tous les fils de manière récursive */
-    /* Si on aurait supprimer le noeud lui même il y aurait eu des fuites de mémoire ! */
+    /* Il est nÃ©cessaire de dÃ©truire tous les fils de maniÃ¨re rÃ©cursive */
+    /* Si on aurait supprimer le noeud lui mÃªme il y aurait eu des fuites de mÃ©moire ! */
     for (unsigned i = 0; i < fils.size(); i++) {
         delete fils[i];
     }
@@ -39,7 +38,7 @@ Noeud::~Noeud() {
 unsigned Noeud::taille() {
     unsigned taille = 0;
 
-    /* Appel récursif pour tous les fils */
+    /* Appel rÃ©cursif pour tous les fils */
     for (unsigned i = 0; i < fils.size(); i++) {
         taille += fils[i]->taille();
     }
@@ -53,7 +52,7 @@ bool Noeud::estRacine() const {
 }
 
 PNoeud Noeud::getRacine() {
-    /* Déjà à la racine ? */
+    /* DÃ©jÃ  Ã  la racine ? */
     if (pere == 0) return this;
 
     PNoeud parent = pere;
@@ -81,16 +80,16 @@ unsigned Noeud::getNiveau() {
 }
 
 vector<int> Noeud::listeNiveau() {
-    /* Récupérer le niveau actuel */
+    /* RÃ©cupÃ©rer le niveau actuel */
     unsigned const niveau = getNiveau();
 
-    /* Récupère la racine */
+    /* RÃ©cupÃ¨re la racine */
     PNoeud racine = getRacine();
 
-    /* Liste des entiers de même niveau */
+    /* Liste des entiers de mÃªme niveau */
     vector<int> liste;
 
-    /* Appel récursif */
+    /* Appel rÃ©cursif */
     racine->ajouteNoeudsDeMemeNiveau(liste, niveau);
 
     return liste;
@@ -112,7 +111,7 @@ void Noeud::ajouteNoeudsDeMemeNiveau(vector<int> &v, unsigned const niveau) {
 }
 
 Noeud* Noeud::getNoeud(int v) {
-    /* Cas du noeud lui même */
+    /* Cas du noeud lui mÃªme */
     if (valeur == v) return this;
 
     /* Cas de la racine */
@@ -133,7 +132,7 @@ void Noeud::trouveNoeud(Noeud **noeud, int v) {
         return;
     }
 
-    /* Appel récursif pour tous les noeuds */
+    /* Appel rÃ©cursif pour tous les noeuds */
     for (unsigned i = 0; i < fils.size(); i++) {
         fils[i]->trouveNoeud(noeud, v);
     }
@@ -143,7 +142,7 @@ void Noeud::trouveNoeud(Noeud **noeud, int v) {
 void Noeud::afficheNoeuds() {
     cout << "Noeud [" << valeur << "] Niveau: " << getNiveau() << endl;
 
-    /* Appel récursif */
+    /* Appel rÃ©cursif */
     for (unsigned i = 0; i < fils.size(); i++)
         fils[i]->afficheNoeuds();
 }
