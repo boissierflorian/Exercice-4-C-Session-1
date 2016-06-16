@@ -10,6 +10,8 @@ private:
     int valeur;
     vector<Noeud *> fils;
     Noeud *pere;
+    void trouveNoeud(Noeud **noeud, int v);
+    void ajouteNoeudsDeMemeNiveau(vector<int> &v, unsigned const niveau);
 public:
     Noeud();
     Noeud(vector<int> v, int& pos, Noeud *le_pere);
@@ -21,11 +23,8 @@ public:
     vector<int> listeNiveau();
     void afficheNoeuds();
     void afficheArbre();
-    void ajouteNoeudsDeMemeNiveau(vector<int> &v, unsigned const niveau);
     Noeud* getNoeud(int valeur);
-    void trouveNoeud(Noeud **noeud, int v);
 };
 typedef Noeud* PNoeud;
-
 
 #endif // NOEUD_HPP_INCLUDED
